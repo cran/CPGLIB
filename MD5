@@ -1,6 +1,6 @@
-fc8d76585c4cd8d3c309e2efdb36612b *DESCRIPTION
+66e79bfada7150f6e6c2ccb56d21bcfb *DESCRIPTION
 e914aea8c9b36146ff90d2542e70edcf *NAMESPACE
-e421927aa59d03e3ec6c4064ad6cae21 *NEWS
+1f5da2562edfac5dc21b7bec4172511a *NEWS
 1be06e76456b0a8d510aae13b372a183 *R/CPGLIB.R
 e4eb3a1b255c59c43e0f1295407be54b *R/CPGLIB_Coefficient_Functions.R
 d6ba1362ef76e1555eab7a7990cab4e8 *R/CPGLIB_Construction_Functions.R
@@ -34,10 +34,10 @@ a6626e96c6d289ef4e814666563d6904 *man/plot.cv.CPGLIB.Rd
 a4dd65c406fe01be5cce79bd1a8092e9 *man/predict.ProxGrad.Rd
 786c3964ba86a6cf5f8a0e3b24bea13a *man/predict.cv.CPGLIB.Rd
 73e296d77cde6c7cf5fc50411ad4ea6e *man/predict.cv.ProxGrad.Rd
-2c0dd9f8ca35c17af37a5b3eae861f07 *src/CPGLIB.cpp
+757171569096ef471266ad76185f2ad7 *src/CPGLIB.cpp
 626a32add2694dd787e4b656a90bb718 *src/CPGLIB.hpp
 424cfa210650f83fdd8cd3238b144e88 *src/CPGLIB_Main.cpp
-aead1a81ad9d3a1c839faad0bc27d18b *src/CV_CPGLIB.cpp
+a1f395df90777e5aeb3e7346711844b5 *src/CV_CPGLIB.cpp
 7be2488cb689db9243853f3abdc59a13 *src/CV_CPGLIB.hpp
 ef42c5dea53ee26c5c947fa9f9bdda89 *src/CV_CPGLIB_Main.cpp
 08f7f63b05674d1d380c227875da9fcc *src/CV_ProxGrad.cpp

@@ -1,2 +1,5 @@
 # CPGLIB 1.0.0
 * Initial stable release of package.
+
+# CPGLIB 1.0.1
+* Fixed source code warning error in CPGLIB.cpp.
