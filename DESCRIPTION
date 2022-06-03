@@ -1,11 +1,11 @@
 Package: CPGLIB
 Type: Package
 Title: Competing Proximal Gradients Library
-Version: 1.0.1
-Date: 2021-05-10
-Author: Anthony Christidis <anthony.christidis@stat.ubc.ca>,
-    Stefan Van Aelst <stefan.vanaelst@kuleuven.be>,
-    Ruben Zamar <ruben@stat.ubc.ca>
+Version: 1.1.0
+Date: 2022-05-31
+Authors@R: c(person("Anthony", "Christidis", role=c("aut", "cre"), email = "anthony.christidis@stat.ubc.ca"),
+	     person("Stefan", "Van Aelst", role=c("aut"), email = "stefan.vanaelst@kuleuven.be"),
+	     person("Ruben", "Zamar", role=c("aut"), email = "ruben@stat.ubc.ca"))
 Maintainer: Anthony Christidis <anthony.christidis@stat.ubc.ca>
 Description: Functions to generate ensembles of generalized linear models using 
              competing proximal gradients. The optimal sparsity and diversity
@@ -14,9 +14,12 @@ License: GPL (>= 2)
 Biarch: true
 Imports: Rcpp (>= 1.0.3)
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.0.2
-Suggests: testthat, vctrs, glmnet, mvnfast
+RoxygenNote: 7.1.1
+Suggests: testthat, vctrs, mvnfast
 NeedsCompilation: yes
-Packaged: 2021-05-10 19:28:46 UTC; antho
+Packaged: 2022-06-02 16:23:03 UTC; antho
+Author: Anthony Christidis [aut, cre],
+  Stefan Van Aelst [aut],
+  Ruben Zamar [aut]
 Repository: CRAN
-Date/Publication: 2021-05-11 00:02:11 UTC
+Date/Publication: 2022-06-03 07:40:05 UTC

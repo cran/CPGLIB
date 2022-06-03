@@ -1,17 +1,16 @@
 #' 
 #' @title Generalized Linear Models via Proximal Gradients - Cross-validation
 #' 
-#' @description \code{cv.ProxGrad} computes and cross-validates the coefficients for generalized linear models using accelerated proximal gradients.
+#' @description \code{cv.ProxGrad} computes and cross-validates the coefficients for generalized linear models using proximal gradients.
 #' 
 #' @param x Design matrix.
 #' @param y Response vector.
-#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-#' "Logistic", "Gamma" or "Poisson". Default is "Linear".
+#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+#' "Logistic". Default is "Linear".
 #' @param include_intercept Argument to determine whether there is an intercept. Default is TRUE.
 #' @param alpha_s Elastic net mixing parmeter. Default is 3/4.
 #' @param n_lambda_sparsity Sparsity tuning parameter value. Default is 100.
-#' @param acceleration Argument to determine whether a gradient acceleration method is used. Default is FALSE.
-#' @param tolerance Convergence criteria for the coefficients. Default is 1e-3.
+#' @param tolerance Convergence criteria for the coefficients. Default is 1e-8.
 #' @param max_iter Maximum number of iterations in the algorithm. Default is 1e5.
 #' @param n_folds Number of cross-validation folds. Default is 10.
 #' @param n_threads Number of threads. Default is a single thread.
@@ -56,7 +55,6 @@
 #'                             include_intercept = TRUE,
 #'                             alpha_s = 3/4, 
 #'                             n_lambda_sparsity = 100, 
-#'                             acceleration = TRUE,
 #'                             tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Predictions
@@ -71,12 +69,11 @@
 #' 
 
 cv.ProxGrad <- function(x, y, 
-                        glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1], 
+                        glm_type = c("Linear", "Logistic")[1], 
                         include_intercept=TRUE, 
                         alpha_s = 3/4,
                         n_lambda_sparsity = 100, 
-                        acceleration = FALSE,
-                        tolerance = 1e-3, max_iter = 1e5,
+                        tolerance = 1e-8, max_iter = 1e5,
                         n_folds = 10,
                         n_threads = 1){
   
@@ -101,22 +98,16 @@ cv.ProxGrad <- function(x, y,
   # Setting the model type
   type.cpp <- switch(glm_type,
                      "Linear" = 1,
-                     "Logistic" = 2,
-                     "Gamma" = 3,
-                     "Poisson" = 4)
+                     "Logistic" = 2)
   
   # Setting to include intercept parameter for CPP computation
   include_intercept.cpp <- sum(include_intercept)
-  
-  # Setting of acceleration for CPP computation
-  acceleration.cpp <- sum(acceleration)
   
   # Source code computation
   cv.ProxGrad.out <- CV_ProxGrad_Main(x.permutation, y.permutation, 
                                       type.cpp, 
                                       include_intercept.cpp, 
                                       alpha_s,
-                                      acceleration.cpp,
                                       n_lambda_sparsity,
                                       tolerance, max_iter,
                                       n_folds,

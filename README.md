@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.com/AnthonyChristidis/CPGLIB.svg?branch=master)](https://travis-ci.com/AnthonyChristidis/CPGLIB) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/CPGLIB)](https://cran.r-project.org/package=CPGLIB) [![Downloads](http://cranlogs.r-pkg.org/badges/CPGLIB)](https://cran.r-project.org/package=CPGLIB)
+[![Build Status](https://app.travis-ci.com/AnthonyChristidis/CPGLIB.svg?branch=master)](https://app.travis-ci.com/AnthonyChristidis/CPGLIB)  [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/CPGLIB)](https://cran.r-project.org/package=CPGLIB) [![Downloads](http://cranlogs.r-pkg.org/badges/CPGLIB)](https://cran.r-project.org/package=CPGLIB)
 
 CPGLIB
 ======

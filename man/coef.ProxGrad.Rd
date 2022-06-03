@@ -49,7 +49,6 @@ proxgrad.out <- ProxGrad(x.train, y.train,
                          include_intercept = TRUE,
                          alpha_s = 3/4,
                          lambda_sparsity = 0.01, 
-                         acceleration = TRUE,
                          tolerance = 1e-5, max_iter = 1e5)
 
 # Coefficients

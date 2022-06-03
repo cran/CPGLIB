@@ -7,7 +7,7 @@
 cv.cpg(
   x,
   y,
-  glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1],
+  glm_type = c("Linear", "Logistic")[1],
   G = 5,
   full_diversity = FALSE,
   include_intercept = TRUE,
@@ -15,10 +15,7 @@ cv.cpg(
   alpha_d = 1,
   n_lambda_sparsity = 100,
   n_lambda_diversity = 100,
-  balanced_cycling = TRUE,
-  permutate_search = FALSE,
-  acceleration = FALSE,
-  tolerance = 1e-05,
+  tolerance = 1e-08,
   max_iter = 1e+05,
   n_folds = 10,
   n_threads = 1
@@ -29,8 +26,8 @@ cv.cpg(
 
 \item{y}{Response vector.}
 
-\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear",
-"Logistic", "Gamma" or "Poisson". Default is "Linear".}
+\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+"Logistic". Default is "Linear".}
 
 \item{G}{Number of groups in the ensemble.}
 
@@ -46,13 +43,7 @@ cv.cpg(
 
 \item{n_lambda_diversity}{Number of candidates for diveristy tuning parameter. Default is 100.}
 
-\item{balanced_cycling}{Argument to determine the cycling strategy for the optimal solution search. Default is TRUE.}
-
-\item{permutate_search}{Argument to determine whether permutations are used to search for the optimal solution. Default is FALSE.}
-
-\item{acceleration}{Argument to determine whether a gradient acceleration method is used. Default is FALSE.}
-
-\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-3.}
+\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-8.}
 
 \item{max_iter}{Maximum number of iterations in the algorithm. Default is 1e5.}
 
@@ -98,7 +89,6 @@ cpg.out <- cv.cpg(x.train, y.train,
                   G = 5, include_intercept = TRUE,
                   alpha_s = 3/4, alpha_d = 1,
                   n_lambda_sparsity = 100, n_lambda_diversity = 100,
-                  balanced_cycling = TRUE,
                   tolerance = 1e-5, max_iter = 1e5)
 
 # Predictions

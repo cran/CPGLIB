@@ -5,18 +5,15 @@
 #' 
 #' @param x Design matrix.
 #' @param y Response vector.
-#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-#' "Logistic", "Gamma" or "Poisson". Default is "Linear".
+#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+#' "Logistic". Default is "Linear".
 #' @param G Number of groups in the ensemble.
 #' @param include_intercept Argument to determine whether there is an intercept. Default is TRUE.
 #' @param alpha_s Sparsity mixing parmeter. Default is 3/4.
 #' @param alpha_d Diversity mixing parameter. Default is 1.
 #' @param lambda_sparsity Sparsity tuning parameter value.
 #' @param lambda_diversity Diversity tuning parameter value.
-#' @param balanced_cycling Argument to determine the cycling strategy for the optimal solution search. Default is TRUE.
-#' @param permutate_search Argument to determine whether permutations are used to search for the optimal solution. Default is FALSE.
-#' @param acceleration Argument to determine whether a gradient acceleration method is used. Default is FALSE.
-#' @param tolerance Convergence criteria for the coefficients. Default is 1e-3.
+#' @param tolerance Convergence criteria for the coefficients. Default is 1e-8.
 #' @param max_iter Maximum number of iterations in the algorithm. Default is 1e5.
 #' 
 #' @return An object of class \code{cpg}
@@ -59,7 +56,6 @@
 #'                G = 5, include_intercept = TRUE,
 #'                alpha_s = 3/4, alpha_d = 1,
 #'                lambda_sparsity = 0.01, lambda_diversity = 1,
-#'                balanced_cycling = TRUE,
 #'                tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Predictions
@@ -76,15 +72,12 @@
 #' 
 
 cpg <- function(x, y, 
-                glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1], 
+                glm_type = c("Linear", "Logistic")[1], 
                 G = 5,
                 include_intercept = TRUE, 
                 alpha_s = 3/4, alpha_d = 1,
                 lambda_sparsity, lambda_diversity,
-                balanced_cycling = TRUE,
-                permutate_search = FALSE,
-                acceleration = FALSE,
-                tolerance = 1e-5, max_iter = 1e5){
+                tolerance = 1e-8, max_iter = 1e5){
   
   # Check response data
   y <- Check_Response_CPGLIB(y, glm_type)
@@ -105,21 +98,10 @@ cpg <- function(x, y,
   # Setting the model type
   type.cpp <- switch(glm_type,
                      "Linear" = 1,
-                     "Logistic" = 2,
-                     "Gamma" = 3,
-                     "Poisson" = 4)
+                     "Logistic" = 2)
   
   # Setting to include intercept parameter for CPP computation
   include_intercept.cpp <- sum(include_intercept)
-  
-  # Setting of acceleration for CPP computation
-  acceleration.cpp <- sum(acceleration)
-  
-  # Setting of permutation search for CPP computation
-  permutate_search.cpp <- sum(permutate_search)
-  
-  # Setting of cycling search for CPP computation
-  balanced_cycling.cpp <- sum(balanced_cycling)
   
   # Source code computation
   cpg.out <- CPGLIB_Main(x.permutation, y.permutation, 
@@ -128,9 +110,6 @@ cpg <- function(x, y,
                          include_intercept.cpp, 
                          alpha_s, alpha_d,
                          lambda_sparsity, lambda_diversity,
-                         balanced_cycling.cpp,
-                         acceleration.cpp,
-                         permutate_search.cpp,
                          tolerance, max_iter)
   
   # Object construction

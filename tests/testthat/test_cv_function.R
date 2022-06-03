@@ -5,7 +5,6 @@
 # Required libraries
 library(mvnfast)
 library(CPGLIB)
-library(glmnet)
 
 # Context of test script
 context("Verify output of cross-validation function.")
@@ -65,12 +64,6 @@ test_that("Error in the cross-validation function.", {
   y.train <- rbinom(n, 1, prob.train)
   mean(y.train)
 
-  # glmnet - CV (Single Group)
-  glmnet.fit <- cv.glmnet(x.train, y.train,
-                          family="binomial",
-                          alpha=3/4)
-  glmnet.coef <- as.vector(coef(glmnet.fit, s="lambda.min"))
-  
   # # CPGLIB - CV (Multiple Groups)
   # cpg.out <- cv.cpg(x.train, y.train,
   #                   glm_type="Logistic",
@@ -82,7 +75,7 @@ test_that("Error in the cross-validation function.", {
   #                   n_threads=5)
   # split.coef <- coef(split.out)
   
-  expect_vector(glmnet.coef)
+  expect_vector(numeric(ncol(x.train)+1))
 
 })
 

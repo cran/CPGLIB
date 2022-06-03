@@ -48,7 +48,6 @@
 #'                          include_intercept = TRUE,
 #'                          alpha_s = 3/4,
 #'                          lambda_sparsity = 0.01, 
-#'                          acceleration = TRUE,
 #'                          tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Coefficients
@@ -115,7 +114,6 @@ coef.ProxGrad <- function(object, ...){
 #'                             include_intercept = TRUE,
 #'                             alpha_s = 3/4,
 #'                             n_lambda_sparsity = 100, 
-#'                             acceleration = TRUE,
 #'                             tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Coefficients

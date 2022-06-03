@@ -32,7 +32,7 @@ Check_Data_CPGLIB <- function(x, y,
   }
   
   # Check input for GLM type
-  if(!(glm_type %in% c("Linear", "Logistic", "Gamma", "Poisson")))
+  if(!(glm_type %in% c("Linear", "Logistic")))
     stop("The GLM type specified in invalid.")
   
   # Check number of groups
@@ -184,17 +184,6 @@ Check_Response_CPGLIB <- function(y, glm_type){
             return(y)
       }
     
-  } else if(glm_type=="Poisson"){
-    
-    if(round(y)!=y || any(y<0))
-      stop("The response vector \"y\" must contain count data (non-negative) if \"glm_type\" is \"Poisson\".") else
-        return(y)
-    
-  } else if(glm_type=="Gamma"){
-    
-    if(any(y<0))
-      stop("The response vector \"y\" must contain only non-negative values if \"glm_type\" is \"Gamma\".") else
-        return(y)
   } else if(glm_type=="Linear")
     return(y)
 }

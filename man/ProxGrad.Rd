@@ -7,12 +7,11 @@
 ProxGrad(
   x,
   y,
-  glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1],
+  glm_type = c("Linear", "Logistic")[1],
   include_intercept = TRUE,
   alpha_s = 3/4,
   lambda_sparsity,
-  acceleration = FALSE,
-  tolerance = 1e-05,
+  tolerance = 1e-08,
   max_iter = 1e+05
 )
 }
@@ -21,8 +20,8 @@ ProxGrad(
 
 \item{y}{Response vector.}
 
-\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-"Logistic", "Gamma" or "Poisson". Default is "Linear".}
+\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+"Logistic" . Default is "Linear".}
 
 \item{include_intercept}{Argument to determine whether there is an intercept. Default is TRUE.}
 
@@ -30,9 +29,7 @@ ProxGrad(
 
 \item{lambda_sparsity}{Sparsity tuning parameter value.}
 
-\item{acceleration}{Argument to determine whether a gradient acceleration method is used. Default is FALSE.}
-
-\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-3.}
+\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-8.}
 
 \item{max_iter}{Maximum number of iterations in the algorithm. Default is 1e5.}
 }
@@ -40,7 +37,7 @@ ProxGrad(
 An object of class ProxGrad.
 }
 \description{
-\code{ProxGrad} computes the coefficients for generalized linear models using accelerated proximal gradients.
+\code{ProxGrad} computes the coefficients for generalized linear models using proximal gradients.
 }
 \examples{
 \donttest{
@@ -74,7 +71,6 @@ proxgrad.out <- ProxGrad(x.train, y.train,
                          include_intercept = TRUE,
                          alpha_s = 3/4,
                          lambda_sparsity = 0.01, 
-                         acceleration = TRUE,
                          tolerance = 1e-5, max_iter = 1e5)
 
 # Predictions

@@ -6,9 +6,14 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // CPGLIB_Main
-Rcpp::List CPGLIB_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& G, arma::uword& include_intercept, double& alpha_s, double& alpha_d, double& lambda_sparsity, double& lambda_diversity, arma::uword& balanced_cycling, arma::uword& acceleration, arma::uword& permutate_search, double& tolerance, arma::uword& max_iter);
-RcppExport SEXP _CPGLIB_CPGLIB_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP GSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP alpha_dSEXP, SEXP lambda_sparsitySEXP, SEXP lambda_diversitySEXP, SEXP balanced_cyclingSEXP, SEXP accelerationSEXP, SEXP permutate_searchSEXP, SEXP toleranceSEXP, SEXP max_iterSEXP) {
+Rcpp::List CPGLIB_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& G, arma::uword& include_intercept, double& alpha_s, double& alpha_d, double& lambda_sparsity, double& lambda_diversity, double& tolerance, arma::uword& max_iter);
+RcppExport SEXP _CPGLIB_CPGLIB_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP GSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP alpha_dSEXP, SEXP lambda_sparsitySEXP, SEXP lambda_diversitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -21,18 +26,15 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double& >::type alpha_d(alpha_dSEXP);
     Rcpp::traits::input_parameter< double& >::type lambda_sparsity(lambda_sparsitySEXP);
     Rcpp::traits::input_parameter< double& >::type lambda_diversity(lambda_diversitySEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type balanced_cycling(balanced_cyclingSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type acceleration(accelerationSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type permutate_search(permutate_searchSEXP);
     Rcpp::traits::input_parameter< double& >::type tolerance(toleranceSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type max_iter(max_iterSEXP);
-    rcpp_result_gen = Rcpp::wrap(CPGLIB_Main(x, y, type, G, include_intercept, alpha_s, alpha_d, lambda_sparsity, lambda_diversity, balanced_cycling, acceleration, permutate_search, tolerance, max_iter));
+    rcpp_result_gen = Rcpp::wrap(CPGLIB_Main(x, y, type, G, include_intercept, alpha_s, alpha_d, lambda_sparsity, lambda_diversity, tolerance, max_iter));
     return rcpp_result_gen;
 END_RCPP
 }
 // CV_CPGLIB_Main
-Rcpp::List CV_CPGLIB_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& G, arma::uword& full_diversity, arma::uword& include_intercept, double& alpha_s, double& alpha_d, arma::uword& n_lambda_sparsity, arma::uword& n_lambda_diversity, arma::uword& balanced_cycling, arma::uword& permutate_search, arma::uword& acceleration, double& tolerance, arma::uword& max_iter, arma::uword& n_folds, arma::uword& n_threads);
-RcppExport SEXP _CPGLIB_CV_CPGLIB_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP GSEXP, SEXP full_diversitySEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP alpha_dSEXP, SEXP n_lambda_sparsitySEXP, SEXP n_lambda_diversitySEXP, SEXP balanced_cyclingSEXP, SEXP permutate_searchSEXP, SEXP accelerationSEXP, SEXP toleranceSEXP, SEXP max_iterSEXP, SEXP n_foldsSEXP, SEXP n_threadsSEXP) {
+Rcpp::List CV_CPGLIB_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& G, arma::uword& full_diversity, arma::uword& include_intercept, double& alpha_s, double& alpha_d, arma::uword& n_lambda_sparsity, arma::uword& n_lambda_diversity, double& tolerance, arma::uword& max_iter, arma::uword& n_folds, arma::uword& n_threads);
+RcppExport SEXP _CPGLIB_CV_CPGLIB_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP GSEXP, SEXP full_diversitySEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP alpha_dSEXP, SEXP n_lambda_sparsitySEXP, SEXP n_lambda_diversitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP, SEXP n_foldsSEXP, SEXP n_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -46,20 +48,17 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< double& >::type alpha_d(alpha_dSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_lambda_sparsity(n_lambda_sparsitySEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_lambda_diversity(n_lambda_diversitySEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type balanced_cycling(balanced_cyclingSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type permutate_search(permutate_searchSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type acceleration(accelerationSEXP);
     Rcpp::traits::input_parameter< double& >::type tolerance(toleranceSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type max_iter(max_iterSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_folds(n_foldsSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_threads(n_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(CV_CPGLIB_Main(x, y, type, G, full_diversity, include_intercept, alpha_s, alpha_d, n_lambda_sparsity, n_lambda_diversity, balanced_cycling, permutate_search, acceleration, tolerance, max_iter, n_folds, n_threads));
+    rcpp_result_gen = Rcpp::wrap(CV_CPGLIB_Main(x, y, type, G, full_diversity, include_intercept, alpha_s, alpha_d, n_lambda_sparsity, n_lambda_diversity, tolerance, max_iter, n_folds, n_threads));
     return rcpp_result_gen;
 END_RCPP
 }
 // CV_ProxGrad_Main
-Rcpp::List CV_ProxGrad_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& include_intercept, double& alpha_s, arma::uword& acceleration, arma::uword& n_lambda_sparsity, double& tolerance, arma::uword& max_iter, arma::uword& n_folds, arma::uword& n_threads);
-RcppExport SEXP _CPGLIB_CV_ProxGrad_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP accelerationSEXP, SEXP n_lambda_sparsitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP, SEXP n_foldsSEXP, SEXP n_threadsSEXP) {
+Rcpp::List CV_ProxGrad_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& include_intercept, double& alpha_s, arma::uword& n_lambda_sparsity, double& tolerance, arma::uword& max_iter, arma::uword& n_folds, arma::uword& n_threads);
+RcppExport SEXP _CPGLIB_CV_ProxGrad_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP n_lambda_sparsitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP, SEXP n_foldsSEXP, SEXP n_threadsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -68,19 +67,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::uword& >::type type(typeSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type include_intercept(include_interceptSEXP);
     Rcpp::traits::input_parameter< double& >::type alpha_s(alpha_sSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type acceleration(accelerationSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_lambda_sparsity(n_lambda_sparsitySEXP);
     Rcpp::traits::input_parameter< double& >::type tolerance(toleranceSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type max_iter(max_iterSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_folds(n_foldsSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type n_threads(n_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(CV_ProxGrad_Main(x, y, type, include_intercept, alpha_s, acceleration, n_lambda_sparsity, tolerance, max_iter, n_folds, n_threads));
+    rcpp_result_gen = Rcpp::wrap(CV_ProxGrad_Main(x, y, type, include_intercept, alpha_s, n_lambda_sparsity, tolerance, max_iter, n_folds, n_threads));
     return rcpp_result_gen;
 END_RCPP
 }
 // ProxGrad_Main
-Rcpp::List ProxGrad_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& include_intercept, double& alpha_s, arma::uword& acceleration, double& lambda_sparsity, double& tolerance, arma::uword& max_iter);
-RcppExport SEXP _CPGLIB_ProxGrad_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP accelerationSEXP, SEXP lambda_sparsitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP) {
+Rcpp::List ProxGrad_Main(arma::mat& x, arma::vec& y, arma::uword& type, arma::uword& include_intercept, double& alpha_s, double& lambda_sparsity, double& tolerance, arma::uword& max_iter);
+RcppExport SEXP _CPGLIB_ProxGrad_Main(SEXP xSEXP, SEXP ySEXP, SEXP typeSEXP, SEXP include_interceptSEXP, SEXP alpha_sSEXP, SEXP lambda_sparsitySEXP, SEXP toleranceSEXP, SEXP max_iterSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -89,20 +87,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::uword& >::type type(typeSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type include_intercept(include_interceptSEXP);
     Rcpp::traits::input_parameter< double& >::type alpha_s(alpha_sSEXP);
-    Rcpp::traits::input_parameter< arma::uword& >::type acceleration(accelerationSEXP);
     Rcpp::traits::input_parameter< double& >::type lambda_sparsity(lambda_sparsitySEXP);
     Rcpp::traits::input_parameter< double& >::type tolerance(toleranceSEXP);
     Rcpp::traits::input_parameter< arma::uword& >::type max_iter(max_iterSEXP);
-    rcpp_result_gen = Rcpp::wrap(ProxGrad_Main(x, y, type, include_intercept, alpha_s, acceleration, lambda_sparsity, tolerance, max_iter));
+    rcpp_result_gen = Rcpp::wrap(ProxGrad_Main(x, y, type, include_intercept, alpha_s, lambda_sparsity, tolerance, max_iter));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_CPGLIB_CPGLIB_Main", (DL_FUNC) &_CPGLIB_CPGLIB_Main, 14},
-    {"_CPGLIB_CV_CPGLIB_Main", (DL_FUNC) &_CPGLIB_CV_CPGLIB_Main, 17},
-    {"_CPGLIB_CV_ProxGrad_Main", (DL_FUNC) &_CPGLIB_CV_ProxGrad_Main, 11},
-    {"_CPGLIB_ProxGrad_Main", (DL_FUNC) &_CPGLIB_ProxGrad_Main, 9},
+    {"_CPGLIB_CPGLIB_Main", (DL_FUNC) &_CPGLIB_CPGLIB_Main, 11},
+    {"_CPGLIB_CV_CPGLIB_Main", (DL_FUNC) &_CPGLIB_CV_CPGLIB_Main, 14},
+    {"_CPGLIB_CV_ProxGrad_Main", (DL_FUNC) &_CPGLIB_CV_ProxGrad_Main, 10},
+    {"_CPGLIB_ProxGrad_Main", (DL_FUNC) &_CPGLIB_ProxGrad_Main, 8},
     {NULL, NULL, 0}
 };
 

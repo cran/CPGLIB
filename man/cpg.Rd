@@ -7,17 +7,14 @@
 cpg(
   x,
   y,
-  glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1],
+  glm_type = c("Linear", "Logistic")[1],
   G = 5,
   include_intercept = TRUE,
   alpha_s = 3/4,
   alpha_d = 1,
   lambda_sparsity,
   lambda_diversity,
-  balanced_cycling = TRUE,
-  permutate_search = FALSE,
-  acceleration = FALSE,
-  tolerance = 1e-05,
+  tolerance = 1e-08,
   max_iter = 1e+05
 )
 }
@@ -26,8 +23,8 @@ cpg(
 
 \item{y}{Response vector.}
 
-\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-"Logistic", "Gamma" or "Poisson". Default is "Linear".}
+\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+"Logistic". Default is "Linear".}
 
 \item{G}{Number of groups in the ensemble.}
 
@@ -41,13 +38,7 @@ cpg(
 
 \item{lambda_diversity}{Diversity tuning parameter value.}
 
-\item{balanced_cycling}{Argument to determine the cycling strategy for the optimal solution search. Default is TRUE.}
-
-\item{permutate_search}{Argument to determine whether permutations are used to search for the optimal solution. Default is FALSE.}
-
-\item{acceleration}{Argument to determine whether a gradient acceleration method is used. Default is FALSE.}
-
-\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-3.}
+\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-8.}
 
 \item{max_iter}{Maximum number of iterations in the algorithm. Default is 1e5.}
 }
@@ -89,7 +80,6 @@ cpg.out <- cpg(x.train, y.train,
                G = 5, include_intercept = TRUE,
                alpha_s = 3/4, alpha_d = 1,
                lambda_sparsity = 0.01, lambda_diversity = 1,
-               balanced_cycling = TRUE,
                tolerance = 1e-5, max_iter = 1e5)
 
 # Predictions

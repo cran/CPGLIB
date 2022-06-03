@@ -50,7 +50,6 @@
 #'                G=5, include_intercept=TRUE,
 #'                alpha_s=3/4, alpha_d=1,
 #'                lambda_sparsity=0.01, lambda_diversity=1,
-#'                balanced_cycling=TRUE,
 #'                tolerance=1e-5, max_iter=1e5)
 #'                
 #' # Coefficients for each group                
@@ -127,7 +126,6 @@ coef.CPGLIB <- function(object, groups = NULL, ensemble_average = FALSE, ...){
 #'                   G = 5, include_intercept = TRUE,
 #'                   alpha_s = 3/4, alpha_d = 1,
 #'                   n_lambda_sparsity = 100, n_lambda_diversity = 100,
-#'                   balanced_cycling = TRUE,
 #'                   tolerance = 1e-5, max_iter = 1e5)
 #' cpg.coef <- coef(cpg.out)
 #' 

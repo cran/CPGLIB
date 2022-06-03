@@ -53,7 +53,6 @@
 #'                G = 5, include_intercept = TRUE,
 #'                alpha_s = 3/4, alpha_d = 1,
 #'                lambda_sparsity = 0.01, lambda_diversity = 1,
-#'                balanced_cycling = TRUE,
 #'                tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Predictions
@@ -242,7 +241,6 @@ predict.CPGLIB <- function(object, newx,
 #'                   G = 5, include_intercept = TRUE,
 #'                   alpha_s = 3/4, alpha_d = 1,
 #'                   n_lambda_sparsity = 100, n_lambda_diversity = 100,
-#'                   balanced_cycling = TRUE,
 #'                   tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Predictions
@@ -339,40 +337,5 @@ predict.cv.CPGLIB <- function(object, newx,
       return(as.numeric(apply(2*round(logistic.prob, 0), 1, mean)>=1))
     }
     
-  } else if(object$glm_type=="Gamma"){ # GAMMA MODEL
-    
-    if(ensemble_type=="Model-Avg"){
-      
-      cpg.coef <- coef(object)
-      
-      gamma.predictions <- sapply(groups, function(x, cpg.coef)
-        exp(cpg.coef[1,x] + newx %*% cpg.coef[-1,x]),
-        cpg.coef=cpg.coef)
-      
-      return(apply(gamma.predictions, 1, mean))
-      
-    } else if(ensemble_type=="Coef-Avg"){
-      
-      cpg.coef <- coef(object, groups=groups, ensemble_average=TRUE)
-      return(exp(cpg.coef[1] + newx %*% cpg.coef[-1]))
-    }
-    
-  } else if(object$glm_type=="Poisson"){ # POISSON MODEL
-    
-    if(ensemble_type=="Model-Avg"){
-      
-      cpg.coef <- coef(object)
-      
-      poisson.predictions <- sapply(groups, function(x, cpg.coef)
-        exp(cpg.coef[1,x] + newx %*% cpg.coef[-1,x]),
-        cpg.coef=cpg.coef)
-      
-      return(apply(poisson.predictions, 1, mean))
-      
-    } else if(ensemble_type=="Coef-Avg"){
-      
-      cpg.coef <- coef(object, groups=groups, ensemble_average=TRUE)
-      return(exp(cpg.coef[1] + newx %*% cpg.coef[-1]))
-    }
-  }
+  } 
 }

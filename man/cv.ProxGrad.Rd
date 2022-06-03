@@ -7,12 +7,11 @@
 cv.ProxGrad(
   x,
   y,
-  glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1],
+  glm_type = c("Linear", "Logistic")[1],
   include_intercept = TRUE,
   alpha_s = 3/4,
   n_lambda_sparsity = 100,
-  acceleration = FALSE,
-  tolerance = 0.001,
+  tolerance = 1e-08,
   max_iter = 1e+05,
   n_folds = 10,
   n_threads = 1
@@ -23,8 +22,8 @@ cv.ProxGrad(
 
 \item{y}{Response vector.}
 
-\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-"Logistic", "Gamma" or "Poisson". Default is "Linear".}
+\item{glm_type}{Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+"Logistic". Default is "Linear".}
 
 \item{include_intercept}{Argument to determine whether there is an intercept. Default is TRUE.}
 
@@ -32,9 +31,7 @@ cv.ProxGrad(
 
 \item{n_lambda_sparsity}{Sparsity tuning parameter value. Default is 100.}
 
-\item{acceleration}{Argument to determine whether a gradient acceleration method is used. Default is FALSE.}
-
-\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-3.}
+\item{tolerance}{Convergence criteria for the coefficients. Default is 1e-8.}
 
 \item{max_iter}{Maximum number of iterations in the algorithm. Default is 1e5.}
 
@@ -46,7 +43,7 @@ cv.ProxGrad(
 An object of class cv.ProxGrad
 }
 \description{
-\code{cv.ProxGrad} computes and cross-validates the coefficients for generalized linear models using accelerated proximal gradients.
+\code{cv.ProxGrad} computes and cross-validates the coefficients for generalized linear models using proximal gradients.
 }
 \examples{
 \donttest{
@@ -80,7 +77,6 @@ proxgrad.out <- cv.ProxGrad(x.train, y.train,
                             include_intercept = TRUE,
                             alpha_s = 3/4, 
                             n_lambda_sparsity = 100, 
-                            acceleration = TRUE,
                             tolerance = 1e-5, max_iter = 1e5)
 
 # Predictions

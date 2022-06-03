@@ -7,17 +7,16 @@
 #' 
 #' @title Generalized Linear Models via Proximal Gradients
 #' 
-#' @description \code{ProxGrad} computes the coefficients for generalized linear models using accelerated proximal gradients.
+#' @description \code{ProxGrad} computes the coefficients for generalized linear models using proximal gradients.
 #' 
 #' @param x Design matrix.
 #' @param y Response vector.
-#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear", 
-#' "Logistic", "Gamma" or "Poisson". Default is "Linear".
+#' @param glm_type Description of the error distribution and link function to be used for the model. Must be one of "Linear" or
+#' "Logistic" . Default is "Linear".
 #' @param include_intercept Argument to determine whether there is an intercept. Default is TRUE.
 #' @param alpha_s Elastic net mixing parmeter. Default is 3/4.
 #' @param lambda_sparsity Sparsity tuning parameter value.
-#' @param acceleration Argument to determine whether a gradient acceleration method is used. Default is FALSE.
-#' @param tolerance Convergence criteria for the coefficients. Default is 1e-3.
+#' @param tolerance Convergence criteria for the coefficients. Default is 1e-8.
 #' @param max_iter Maximum number of iterations in the algorithm. Default is 1e5.
 #' 
 #' @return An object of class ProxGrad.
@@ -60,7 +59,6 @@
 #'                          include_intercept = TRUE,
 #'                          alpha_s = 3/4,
 #'                          lambda_sparsity = 0.01, 
-#'                          acceleration = TRUE,
 #'                          tolerance = 1e-5, max_iter = 1e5)
 #' 
 #' # Predictions
@@ -75,12 +73,11 @@
 #' 
 
 ProxGrad <- function(x, y, 
-                     glm_type = c("Linear", "Logistic", "Gamma", "Poisson")[1], 
+                     glm_type = c("Linear", "Logistic")[1], 
                      include_intercept=TRUE, 
                      alpha_s = 3/4,
                      lambda_sparsity, 
-                     acceleration = FALSE,
-                     tolerance = 1e-5, max_iter = 1e5){
+                     tolerance = 1e-8, max_iter = 1e5){
   
   # Check response data
   y <- Check_Response(y, glm_type)
@@ -101,22 +98,16 @@ ProxGrad <- function(x, y,
   # Setting the model type
   type.cpp <- switch(glm_type,
                      "Linear" = 1,
-                     "Logistic" = 2,
-                     "Gamma" = 3,
-                     "Poisson" = 4)
+                     "Logistic" = 2)
   
   # Setting to include intercept parameter for CPP computation
   include_intercept.cpp <- sum(include_intercept)
   
-  # Setting of acceleration for CPP computation
-  acceleration.cpp <- sum(acceleration)
-
   # Source code computation
   ProxGrad.out <- ProxGrad_Main(x.permutation, y.permutation, 
                                 type.cpp, 
                                 include_intercept.cpp, 
                                 alpha_s,
-                                acceleration.cpp,
                                 lambda_sparsity,
                                 tolerance, max_iter)
   

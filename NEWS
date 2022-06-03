@@ -3,3 +3,8 @@
 
 # CPGLIB 1.0.1
 * Fixed source code warning error in CPGLIB.cpp.
+
+# CPGLIB 1.1.0
+* Fixed potential OpenMP memory leak.
+* Removed line search for proximal gradient descent step.
+* Algorithm now does a single proximal gradient descent update for each model when cycling.
