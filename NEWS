@@ -8,3 +8,6 @@
 * Fixed potential OpenMP memory leak.
 * Removed line search for proximal gradient descent step.
 * Algorithm now does a single proximal gradient descent update for each model when cycling.
+
+# CPGLIB 1.1.1
+* Removed invalid UTF-8 characters.
