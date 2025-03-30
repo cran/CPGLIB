@@ -11,3 +11,6 @@
 
 # CPGLIB 1.1.1
 * Removed invalid UTF-8 characters.
+
+# CPGLIB 1.1.2
+* Fixed bashisms.

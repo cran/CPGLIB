@@ -1,6 +1,6 @@
-4365c54b42d178eb7ccb0c71ea636afc *DESCRIPTION
+b85e9734a9a6ceff77789dcaa3c2d228 *DESCRIPTION
 8e6720cd6333e0c7e2651185c5a1748b *NAMESPACE
-c5f1273ca81be384cf59ac12446a4a74 *NEWS
+6c08fdb0eb36a0fd005e4ff1e7d99cb2 *NEWS
 742455b96873bab86d6094096b71ab2c *R/CPGLIB.R
 96f620395e777c101ae1440b600a4de5 *R/CPGLIB_Coefficient_Functions.R
 d6ba1362ef76e1555eab7a7990cab4e8 *R/CPGLIB_Construction_Functions.R
@@ -15,10 +15,10 @@ fc035505ad8c534ba362684b6701e467 *R/ProxGrad_Prediction_Functions.R
 21c6018e9d7d77f32fe3a6087557a24e *R/RcppExports.R
 b4a799e95f40372bcd41db955b3e54f9 *R/cvCPGLIB.R
 13a65e104d3dd508eaa615b3dfc78d41 *R/cvProxGrad.R
-81f54b8680e8f23b84e2ba688961acbf *README.md
+fba20166f7539455c1676f0f57cf7f75 *README.md
 ccdbb882c645f67f951535d26054e50e *cleanup
-4b2801abc7dac3ae5dccf62a6ea2e0f4 *configure
-e486e61057ab4845d1d7b219c778f01e *configure.ac
+00cdf4dd92d5d3ddf9e909b728d40d8f *configure
+556ec6e5120ec9eb82ab42dd29580e19 *configure.ac
 e5ce541c21cd81c6e9f39a854c63cbee *configure.win
 f6113105f849063fbeed5c5d39bce507 *man/ProxGrad.Rd
 ac67eed48dd199c235ba9e54bfd75fe8 *man/coef.CPGLIB.Rd
@@ -42,7 +42,7 @@ d7ab8c6f5650777a9a36071cdc9a8d5c *src/CV_CPGLIB_Main.cpp
 1ddb7721cd6e658b22319e4df9ccec1f *src/CV_ProxGrad.hpp
 476c0e198f72b42a4754dedd93496551 *src/CV_ProxGrad_Main.cpp
 a19824c6304b5eb5a5272e9f76f01324 *src/Makevars.in
-01928104d4b57c82d4195b21f02b6b26 *src/Makevars.win
+26c4730965133bc7ff795fd0ad1a9405 *src/Makevars.win
 d8c1cdd3bd5950507f6c8a4cb225664e *src/ProxGrad.cpp
 53f5a7f5948c0ed6e707ea663e09e000 *src/ProxGrad.hpp
 36612d94c3cc340239f3f614ff8dfd7c *src/ProxGrad_Main.cpp
